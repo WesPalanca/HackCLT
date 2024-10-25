@@ -4,11 +4,6 @@ import Users from '../models/Users.js';
 import dotenv from 'dotenv';
 dotenv.config();
 //register controller
-export const test = async(req, res) =>{
-    console.log("testing");
-    const users = await Users.find();
-    res.json(users);
-}
 export const register = async (req, res) =>{
     console.log("Registering in process...");
     try{
@@ -29,6 +24,7 @@ export const register = async (req, res) =>{
         })
         await newUser.save();
         res.status(200).json({success: true, message: "User registered successfully"});
+        console.log("Registered Successfully!!!");
 
     } catch(error){
         console.log("Error happened while registering!");

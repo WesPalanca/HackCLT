@@ -27,7 +27,6 @@ const Auth = () =>{
                 localStorage.setItem('token', token);
                 setUsername("");
                 setPassword("");
-                navigate('/Shop');
 
             }else{
                 console.log(message);
@@ -59,7 +58,7 @@ const Auth = () =>{
                 setLastName("");
                 setUsername("");
                 setPassword("");
-                handleLogin();
+                // handleLogin();
             }
             else{
                 console.log(message);
