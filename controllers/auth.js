@@ -8,7 +8,7 @@ export const register = async (req, res) =>{
     console.log("Registering in process...");
     try{
         const { email, firstName, lastName, username, password} = req.body;
-        const usernameExists = await Users.findOne({username: username});
+        const usernameExists = await Users.findOne({ username: username });
         const emailExists = await Users.findOne({email: email});
         if (usernameExists || emailExists){
             return res.status(404).json({success: false, message: "User already exists"});
@@ -43,6 +43,7 @@ export const login = async (req, res) =>{
         const secret = process.env.JWT_SECRET;
         const user = await Users.findOne({username: username});
         if(!user){
+            console.log("user does not exist");
             return res.status(404).json({success: false, message: "user does not exist"});
         }
         const isMatch = await bcrypt.compare(password, user.password);

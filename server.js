@@ -2,7 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import authRoutes from './routes/auth.js'
+import authRoutes from './routes/auth.js';
+import quoteRoutes from './routes/quotes.js';
 
 dotenv.config();
 const app = express();
@@ -17,6 +18,7 @@ mongoose.connect(process.env.MONGO_URI,{
 .then(console.log("Connected to MongoDB"))
 .catch((error) => console.log("Error connecting to database " + error));
 app.use('/api/auth', authRoutes);
+app.use('/api', quoteRoutes);
 
 
 
