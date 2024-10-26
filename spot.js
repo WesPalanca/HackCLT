@@ -5,8 +5,8 @@ import querystring from 'querystring';
 const app = express();
 const port = 8888; // Port 
 
-const clientId = 'CLIENTID'; 
-const clientSecret = 'CLIENTSECRET'; 
+const clientId = '740450aeff2b42fb898dd5546a9a61fc'; 
+const clientSecret = 'd0b41e7315184feab6a221d83939f54b'; 
 const redirectUri = 'http://localhost:8888/callback'; 
 const scopes = 'user-top-read playlist-modify-public'; 
 
@@ -47,8 +47,14 @@ app.get('/callback', async (req, res) => {
     // Prompt user for mood
     res.send(`
         <form action="/create-playlist" method="POST">
-            <label for="mood">Enter your mood:</label>
-            <input type="text" id="mood" name="mood" required>
+            <label for="mood">Select your mood:</label>
+            <select id="mood" name="mood" required>
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="angry">Angry</option>
+                <option value="tired">Tired</option>
+                <option value="anxious">Anxious</option>
+            </select>
             <input type="hidden" name="access_token" value="${accessToken}">
             <input type="hidden" name="top_tracks" value="${topTracks.join(',')}">
             <button type="submit">Create Playlist</button>
@@ -59,7 +65,6 @@ app.get('/callback', async (req, res) => {
 // Fetch top tracks
 const fetchTopTracks = async (token) => {
     const apiUrl = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5'; // Endpoint 
-
     const response = await fetch(apiUrl, {
         method: 'GET',
         headers: {
@@ -116,9 +121,9 @@ const moodValence = (mood) => {
     const moodMap = {
         happy: 0.8,
         sad: 0.2,
-        energetic: 0.9,
-        calm: 0.4,
-        freaky: 0.6
+        angry: 0.9,
+        tired: 0.4,
+        anxious: 0.6
         // ill add more later I guess
     };
     return moodMap[mood.toLowerCase()] || 0.5; // Default to neutral if their mood isnt real
