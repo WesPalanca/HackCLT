@@ -32,6 +32,7 @@ const Home = () =>{
             quote={RGQ.quote}
             />
             <button onClick={() => navigate('/Tracker')}>+ Journal</button>
+            <button onClick={() => navigate('/Journal')}>Journal</button>
         </div>
     )
 }

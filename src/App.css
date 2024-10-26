@@ -191,3 +191,15 @@ form {
   transform: translateY(1px);
   box-shadow: 0 4px 8px rgba(255, 117, 140, 0.2);
 }
+
+.EntryCard{
+  border: solid black 2px;
+  height: 200px;
+  width: 400px;
+  margin: 20px;
+
+}
+.entry-container{
+  display: flex;
+  flex-direction: column;
+}
