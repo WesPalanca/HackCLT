@@ -4,6 +4,8 @@ import './App.css';
 import Auth from "./pages/auth";
 import Home from "./pages/Home";
 import Tracker from "./pages/Tracker";
+import Journal from "./pages/Journal";
+import Feeling from "./pages/Feeling";
 
 
 const App = () =>{
@@ -13,6 +15,8 @@ const App = () =>{
         <Route path="/auth" element={<Auth />}></Route>
         <Route path="/Home" element={<Home />}></Route>
         <Route path="/Tracker" element={<Tracker />}></Route>
+        <Route path='/Journal' element={<Journal />}></Route>
+        <Route path='/Feeling' element={<Feeling />}></Route>
       </Routes>
   </Router>
   )

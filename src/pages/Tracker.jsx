@@ -7,9 +7,11 @@ const Tracker = () =>{
     const handleEntry = async (e) =>{
         e.preventDefault();
         try{
+            const mood = localStorage.getItem("mood");
             const token = localStorage.getItem("token");
             const response = await axios.post(`${apiUrl}/api/auth/entry/add`,{
                 entry: entry,
+                mood: mood
             },{
                 headers: { Authorization: token}
             });

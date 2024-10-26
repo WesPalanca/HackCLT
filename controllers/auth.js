@@ -60,12 +60,27 @@ export const login = async (req, res) =>{
 
 }
 
+export const getName = async (req, res) =>{
+    try{
+        const userId = req.user.userId;
+        const user = await Users.findById(userId);
+        if (!user){
+            console.log("cant find user while catching feelings");
+            return res.status(404).json({success: true, message: "cant find user while catching feelings"});
+        }
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({success: false, message: error});
+    }
+}
+
 
 // add entry
 export const addEntry = async (req, res) =>{
     console.log("adding entry...");
     try{
-        const { entry } = req.body;
+        const { entry, mood } = req.body;
         const userId = req.user.userId;
         const user = await Users.findById(userId);
         if (!user){
@@ -73,7 +88,8 @@ export const addEntry = async (req, res) =>{
             return res.status(404).json({success: false, message: "couldn't find user"});
         }
         const temp = {
-            entry: entry
+            entry: entry,
+            mood: mood
           };
 
         await Users.findByIdAndUpdate(

@@ -24,10 +24,27 @@ const Home = () => {
     }
   };
 
+<<<<<<< HEAD
   const generateQuote = async () => {
     try {
       const response = await axios.get(`${apiUrl}/api/quote`);
       console.log("API Response:", response.data); // Log API response
+=======
+    useEffect(() =>{
+        generateQuote();
+    }, [])
+    return (
+        <div className="Home">
+            <Quote 
+            author={RGQ.author}
+            quote={RGQ.quote}
+            />
+            <button onClick={() => navigate('/Tracker')}>+ Journal</button>
+            <button onClick={() => navigate('/Journal')}>Journal</button>
+        </div>
+    )
+}
+>>>>>>> 3410dc3eca1bbfb0129de5f7ce26d8c4e8b3a5a0
 
       const { success, randomQuote } = response.data;
       if (success) {

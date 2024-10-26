@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 
 const moodJournalSchema = new mongoose.Schema({
+    mood: {type: String, required: true},
     entry: {type: String, required: false},
-    datastamp: {type: Date, default: Date.now}
+    timestamp: {type: Date, default: Date.now}
 });
 const userSchema = new mongoose.Schema({
     email: {type: String, required: true},
