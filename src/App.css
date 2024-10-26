@@ -1,3 +1,4 @@
+/* Global and root styles */
 * {
   margin: 0;
   padding: 0;
@@ -12,6 +13,7 @@
   text-align: center;
 }
 
+/* Body and background animation */
 body {
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   background-size: 300% 300%;
@@ -28,7 +30,7 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Container styles for the form */
+/* Container styles for forms */
 .container {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
@@ -53,6 +55,7 @@ h2 {
   margin-bottom: 1rem;
 }
 
+/* Form styling */
 form {
   display: flex;
   flex-direction: column;
@@ -72,8 +75,8 @@ form {
   border: 1px solid #ddd;
   border-radius: 8px;
   outline: none;
-  background: rgba(255, 255, 255, 0.7); /* Make input background slightly transparent */
-  color: black; /* Ensure text color is black */
+  background: rgba(255, 255, 255, 0.7);
+  color: black;
   transition: border 0.3s, box-shadow 0.3s;
 }
 
@@ -103,7 +106,7 @@ form {
   font-size: 1rem;
 }
 
-/* Button styles */
+/* Button styling */
 .btn {
   width: 100%;
   padding: 12px;
@@ -138,16 +141,19 @@ form {
   box-shadow: 0 12px 20px rgba(102, 126, 234, 0.5);
 }
 
-/* Home section styles */
-.Home {
+/* New Home section styles */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  max-width: 600px;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   padding: 2rem;
-  max-width: 600px;
   border-radius: 20px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  margin-top: 2rem;
   animation: fadeIn 1s ease-in-out;
 }
 
@@ -156,6 +162,63 @@ form {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.welcome-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+
+.quote-section {
+  background: #ffffff;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quote-section blockquote {
+  font-style: italic;
+  color: #555;
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 2rem;
+}
+
+.nav-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.nav-button:hover {
+  transform: scale(1.05);
+}
+
+.logo-footer {
+  margin-top: 2rem;
+}
+
+.app-logo {
+  width: 80px;
+  height: auto;
+}
+
+/* Additional styles for quote and refresh */
 .quote {
   font-size: 1.5rem;
   color: #555;

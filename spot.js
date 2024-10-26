@@ -5,8 +5,8 @@ import querystring from 'querystring';
 const app = express();
 const port = 8888;
 
-const clientId = '740450aeff2b42fb898dd5546a9a61fc';
-const clientSecret = 'd0b41e7315184feab6a221d83939f54b';
+const clientId = 'clientID';
+const clientSecret = 'clientSecret';
 const redirectUri = 'http://localhost:8888/callback';
 const scopes = 'user-top-read playlist-modify-public';
 
