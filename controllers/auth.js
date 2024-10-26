@@ -59,3 +59,33 @@ export const login = async (req, res) =>{
     }
 
 }
+
+
+// add entry
+export const addEntry = async (req, res) =>{
+    console.log("adding entry...");
+    try{
+        const { entry } = req.body;
+        const userId = req.user.userId;
+        const user = await Users.findById(userId);
+        if (!user){
+            console.log("Couldn't find user");
+            return res.status(404).json({success: false, message: "couldn't find user"});
+        }
+        const temp = {
+            entry: entry
+          };
+
+        await Users.findByIdAndUpdate(
+            userId,
+            {$push: {moodJournal: temp}},
+            {new: true}
+        )
+        res.status(200).json({success: true, message: "added journal entry"})
+
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({success: false, message: error});
+    }
+};
