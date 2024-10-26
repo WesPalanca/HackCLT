@@ -1,3 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -5,38 +12,182 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background-size: 300% 300%;
+  animation: backgroundShift 20s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes backgroundShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Container styles for the form */
+.container {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 500px;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-.card {
-  padding: 2em;
+.container:hover {
+  transform: scale(1.05);
 }
 
-.read-the-docs {
+h2 {
+  color: #333;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-control input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.7); /* Make input background slightly transparent */
+  color: black; /* Ensure text color is black */
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.form-control input:focus {
+  border-color: #ff758c;
+  box-shadow: 0 4px 8px rgba(255, 117, 140, 0.2);
+}
+
+.form-control input:focus + label,
+.form-control input:not(:placeholder-shown) + label {
+  top: -12px;
+  left: 15px;
+  background: #fff;
+  padding: 0 5px;
+  font-size: 0.8rem;
+  color: #ff758c;
+}
+
+.form-control label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  color: #aaa;
+  pointer-events: none;
+  font-size: 1rem;
+}
+
+/* Button styles */
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(255, 117, 140, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(255, 117, 140, 0.5);
+}
+
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 8px rgba(255, 117, 140, 0.3);
+}
+
+.btn.alt {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn.alt:hover {
+  box-shadow: 0 12px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* Home section styles */
+.Home {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-top: 2rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.quote {
+  font-size: 1.5rem;
+  color: #555;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.author {
+  font-size: 1.2rem;
   color: #888;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.btn-refresh {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s ease;
+}
+
+.btn-refresh:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(255, 117, 140, 0.3);
+}
+
+.btn-refresh:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 8px rgba(255, 117, 140, 0.2);
 }
