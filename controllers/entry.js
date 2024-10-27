@@ -37,6 +37,30 @@ export const getSingleUserEntry = async (req, res) =>{
     }
     catch(error){
         console.log(error);
-        res.status(500).json({success: true, message: error})
+        res.status(500).json({success: false, message: error})
+    }
+}
+
+export const deleteEntry = async (req, res) =>{
+    try{
+        const userId = req.user.userId;
+        const user = await Users.findById(userId);
+        const entryId = req.query.entryId;
+        if (!user){
+            console.log("couldn't find user deleting single user entry");
+            return res.status(404).json({success: false, message: "couldn't find user deleting single user entry"});
+        }
+        await Users.findOneAndUpdate(
+            {_id: userId},
+            {$pull: {moodJournal: { _id: entryId }}},
+            {new: true}
+        )
+        return res.status(200).json({success: true, message: "a success!!"})
+
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({success: false, message: error})
+
     }
 }
