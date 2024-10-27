@@ -57,41 +57,41 @@ const Home = () => {
     }
   };
 
-  return (
-    <div className="Home">
-      <div className="home-container">
-        {/* Welcome Section */}
-        <header className="welcome-header">
-          <h1>Welcome, {userName || 'User'}!</h1> {/* Display userName or a fallback */}
-        </header>
-        
-        {/* Quote Section */}
-        <section className="quote-section">
-          {RGQ.quote ? ( // Check if RGQ.quote is available
-            <blockquote>
-              <p>"{RGQ.quote}"</p>
-              <footer>{RGQ.author}</footer> {/* Display author if available */}
-            </blockquote>
-          ) : (
-            <p>Loading...</p> // Display a loading message while fetching quote
-          )}
-        </section>
-        
-        {/* Button Grid */}
-        <div className="button-grid">
-          <button className="nav-button" onClick={() => navigate('/Journal')}>Journal</button>
-          <button className="nav-button" onClick={handleMusicButtonClick}>Music</button>
-          <button className="nav-button">Chat</button>
-          <button className="nav-button">Resources</button>
-        </div>
-        
-        {/* Logo Section */}
-        <footer className="logo-footer">
-          <img src="../src/assets/logo.png" alt="App Logo" className="app-logo" />
-        </footer>
-      </div>
-    </div>
-  );
+  return (
+    <div className="Home">
+        <div className="home-container">
+            {/* Welcome Section */}
+            <header className="welcome-header">
+                <h1>Welcome, {userName || 'User'}!</h1> {/* Display userName or a fallback */}
+            </header>
+            
+            {/* Quote Section */}
+            <section className="quote-section">
+                {RGQ.quote ? ( // Check if RGQ.quote is available
+                    <blockquote>
+                        <p>"{RGQ.quote}"</p>
+                        <footer>{RGQ.author}</footer> {/* Display author if available */}
+                    </blockquote>
+                ) : (
+                    <p>Loading...</p> // Display a loading message while fetching quote
+                )}
+            </section>
+            
+            {/* Button Grid */}
+            <div className="button-grid">
+                <button className="nav-button" onClick={() => navigate('/Journal')}>Journal</button>
+                <button className="nav-button" onClick={handleMusicButtonClick}>Music</button>
+                <button className="nav-button">Chat</button>
+                <button className="nav-button" onClick={() => navigate('/Resources')}>Resources</button>
+            </div>
+            
+            {/* Logo Section */}
+            <footer className="logo-footer">
+                <img src="../src/assets/logo.png" alt="App Logo" className="app-logo" />
+            </footer>
+        </div>
+    </div>
+  );
 }
 
 export default Home;

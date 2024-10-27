@@ -7,6 +7,7 @@ import Tracker from "./pages/Tracker";
 import Journal from "./pages/Journal";
 import Feeling from "./pages/Feeling";
 import SingleEntry from "./pages/SingleEntry";
+import Resources from "./pages/Resources";
 
 
 
@@ -20,6 +21,7 @@ const App = () =>{
         <Route path='/Journal' element={<Journal />}></Route>
         <Route path='/Feeling' element={<Feeling />}></Route>
         <Route path="/Entry/:id" element={<SingleEntry/>}></Route>
+        <Route path="/Resources" element={<Resources/>}></Route>
       </Routes>
   </Router>
   )
