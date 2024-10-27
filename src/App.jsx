@@ -9,6 +9,7 @@ import Feeling from "./pages/Feeling";
 import SingleEntry from "./pages/SingleEntry";
 
 
+
 const App = () =>{
   return(
   <Router>
