@@ -685,4 +685,3 @@ button:hover {
   transition: background-color 0.3s ease, transform 0.2s ease; /* Transition for hover */
   box-shadow: 0 4px 8px rgba(255, 117, 140, 0.4); /* Shadow for button */
 }
-
