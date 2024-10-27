@@ -84,7 +84,7 @@ const Home = () => {
                 <button className="nav-button" onClick={() => navigate('/Journal')}>Journal</button>
                 <button className="nav-button" onClick={handleMusicButtonClick}>Music</button>
                 <button className="nav-button">Chat</button>
-                <button className="nav-button">Resources</button>
+                <button className="nav-button" onClick={() => navigate('/Resources')}>Resources</button>
             </div>
             
             {/* Logo Section */}

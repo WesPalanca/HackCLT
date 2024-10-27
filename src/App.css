@@ -584,3 +584,105 @@ button:hover {
 .back-button:hover {
   background-color: #999; /* Darker gray on hover */
 }
+/* Single Entry Page CSS */
+.SingleEntry {
+  max-width: 600px; /* Limits the width for better readability */
+  margin: 2rem auto; /* Centers the component and adds vertical spacing */
+  padding: 1.5rem; /* Adds padding inside the container */
+  background-color: #f9f9f9; /* Light background color for contrast */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+  font-family: Arial, sans-serif; /* Sets a clean font for readability */
+}
+
+.SingleEntry h1 {
+  font-size: 2rem; /* Larger font size for the heading */
+  color: #333; /* Darker color for contrast */
+  margin-bottom: 1rem; /* Spacing below the heading */
+  text-align: center; /* Centers the heading text */
+}
+
+.SingleEntry p {
+  font-size: 1.2rem; /* Slightly larger text for the entry content */
+  line-height: 1.5; /* Increases line spacing for better readability */
+  color: #555; /* A softer color for the paragraph text */
+  margin: 1rem 0; /* Adds vertical spacing around the paragraph */
+}
+
+/* Resources Section Styling */
+.resources-container {
+  max-width: 800px; /* Set a max-width to match the journal */
+  margin: 2rem auto; /* Center the container */
+  padding: 2rem; /* Add padding for spacing */
+  background: rgba(255, 255, 255, 0.95); /* Slightly more opaque for better readability */
+  border-radius: 12px; /* Round corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Shadow for depth */
+}
+
+.resources-container h1 {
+  font-size: 2.5rem; /* Increased title size for emphasis */
+  color: #333; /* Dark text for contrast */
+  margin-bottom: 1.5rem; /* Space below title */
+  font-weight: 700; /* Bold title */
+  text-align: center; /* Center the title */
+}
+
+.resources-intro {
+  font-size: 1.1rem; /* Slightly larger intro text */
+  color: #555; /* Grey text for better readability */
+  text-align: center; /* Center the intro text */
+  margin-bottom: 1.5rem; /* Space below intro */
+}
+
+.resource-section {
+  margin-bottom: 1.5rem; /* Space between sections */
+}
+
+.resource-heading {
+  font-size: 1.8rem; /* Card title size */
+  color: #6a11cb; /* Theme color for titles */
+  margin-bottom: 0.5rem; /* Space below title */
+  border-bottom: 2px solid #ff758c; /* Underline for emphasis */
+  padding-bottom: 0.5rem; /* Space below underline */
+}
+
+.resource-description {
+  font-size: 1rem; /* Text size */
+  color: #555; /* Grey text for readability */
+  margin-bottom: 1rem; /* Space below text */
+  line-height: 1.6; /* Improved line height for readability */
+}
+
+.resource-list {
+  list-style: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+}
+
+.resource-list li {
+  margin-bottom: 0.5rem; /* Space between list items */
+  font-size: 1rem; /* List item text size */
+  color: #555; /* Grey text for readability */
+}
+
+.resource-link {
+  color: #ff758c; /* Theme color for links */
+  text-decoration: none; /* Remove underline */
+}
+
+.resource-link:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Button inside resource cards */
+.resource-card .btn {
+  background-color: #ff758c; /* Theme button color */
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Padding for the button */
+  font-size: 1rem; /* Button text size */
+  border-radius: 25px; /* Round corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transition for hover */
+  box-shadow: 0 4px 8px rgba(255, 117, 140, 0.4); /* Shadow for button */
+}
+
