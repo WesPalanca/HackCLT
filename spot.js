@@ -12,7 +12,6 @@ const redirectUri = 'http://localhost:8888/callback';
 const scopes = 'user-top-read playlist-modify-public';
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); // To parse JSON bodies
 
 // Login and Authorization Route
 app.get('/login', (req, res) => {
@@ -54,17 +53,9 @@ app.get('/callback', async (req, res) => {
         // Fetch top tracks 
         const topTracks = await fetchTopTracks(accessToken);
 
-        // Mood selection form with dropdown (this is replaced by buttons in the frontend)
+        // Redirect to create a playlist
         res.send(`
             <form action="/create-playlist" method="POST">
-                <label for="mood">Select your mood:</label>
-                <select id="mood" name="mood" required>
-                    <option value="happy">Happy</option>
-                    <option value="sad">Sad</option>
-                    <option value="angry">Angry</option>
-                    <option value="tired">Tired</option>
-                    <option value="anxious">Anxious</option>
-                </select>
                 <input type="hidden" name="access_token" value="${accessToken}">
                 <input type="hidden" name="top_tracks" value="${topTracks.join(',')}">
                 <button type="submit">Create Playlist</button>
@@ -127,17 +118,47 @@ app.post('/create-playlist', async (req, res) => {
 // Fetch Recommendations with Mood Mapping
 const getRecommendations = async (token, mood, topTracks) => {
     const moodToSeedMap = {
-        happy: topTracks, // Using top tracks as seeds
-        sad: [], // Implement your logic here
-        angry: [], // Implement your logic here
-        tired: [], // Implement your logic here
-        anxious: [] // Implement your logic here
+        happy: topTracks, // Using top tracks as seeds for happy mood
+        sad: topTracks, // Use top tracks for sad mood
+        angry: topTracks, // Use top tracks for angry mood
+        tired: topTracks, // Use top tracks for tired mood
+        anxious: topTracks // Use top tracks for anxious mood
     };
 
     const seedTracks = moodToSeedMap[mood] || [];
 
+    // Set valence values based on the mood
+    let minValence, maxValence;
+    switch (mood) {
+        case 'happy':
+            minValence = 0.6; // Higher valence for happy mood
+            maxValence = 1.0;
+            break;
+        case 'sad':
+            minValence = 0.0; // Lower valence for sad mood
+            maxValence = 0.4;
+            break;
+        case 'angry':
+            minValence = 0.0; // Low valence for angry mood
+            maxValence = 0.3; // Potentially use higher energy tracks with lower valence
+            break;
+        case 'tired':
+            minValence = 0.4; // Medium valence for tired mood
+            maxValence = 0.7;
+            break;
+        case 'anxious':
+            minValence = 0.4; // Medium valence for anxious mood
+            maxValence = 0.7; // Similar to tired, but can be more calming
+            break;
+        default:
+            minValence = 0.0;
+            maxValence = 1.0;
+            break;
+    }
+
     try {
-        const apiUrl = `https://api.spotify.com/v1/recommendations?seed_tracks=${seedTracks.join(',')}&limit=20`;
+        // Fetch recommendations with valence filtering
+        const apiUrl = `https://api.spotify.com/v1/recommendations?seed_tracks=${seedTracks.join(',')}&min_valence=${minValence}&max_valence=${maxValence}&limit=20`;
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {
