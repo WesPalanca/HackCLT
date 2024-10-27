@@ -262,6 +262,10 @@ form {
   margin: 20px;
 
 }
+.entry-img{
+  height: 30px;
+  width: 40px;
+}
 .entry-container{
   display: flex;
   flex-direction: column;
@@ -335,6 +339,30 @@ form {
   font-weight: bold;
 }
 
+
+.back-button {
+    margin-top: 1rem; /* Add some spacing above the button */
+    padding: 0.7rem 1.5rem; /* Increase padding for better clickability */
+    background-color: #6a11cb; /* Match the theme color */
+    color: white;
+    border: none;
+    border-radius: 25px; /* Rounder corners */
+    cursor: pointer;
+    font-size: 1rem; /* Consistent font size */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transition for hover and click effects */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.back-button:hover {
+    background-color: #2575fc; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.back-button:active {
+    transform: translateY(1px); /* Slight drop on click */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Less shadow on active */
+}
+
 .entry-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -342,7 +370,7 @@ form {
   margin-top: 1.5rem;
 }
 
-.EntryCard {
+/* .EntryCard {
   background: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -351,7 +379,7 @@ form {
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .EntryCard:hover {
   transform: translateY(-5px);
@@ -401,6 +429,7 @@ button:active {
 }
 
 
+
 /* EntryCard Component CSS */
 /* EntryCard Styles */
 .EntryCard {
@@ -408,11 +437,11 @@ button:active {
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
-  margin: 1rem;
+  margin: 0; /* Remove margin to prevent centering issues */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
-  width: 100%;
-  max-width: 400px;
+  width: 100%; /* Full width of the grid cell */
+  max-width: 400px; /* Limit max width for larger screens */
 }
 
 .EntryCard:hover {
@@ -462,4 +491,96 @@ button:active {
 
 .EntryCard.fade-out {
   opacity: 0; /* Fade out effect */
+}
+
+.delete-button {
+  background-color: #e74c3c; /* Red color for delete button */
+  color: white; /* White text for contrast */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 0.5rem 1rem; /* Adequate padding */
+  cursor: pointer; /* Pointer cursor */
+  font-size: 1rem; /* Font size */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transition effects */
+  height: 45px;
+  
+}
+
+.delete-button:hover {
+  background-color: #c0392b; /* Darker red on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.delete-button:active {
+  transform: translateY(1px); /* Slight drop on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Less shadow on active */
+}
+
+
+/* Tracker Page CSS */
+.Tracker {
+  max-width: 1000px; /* Increase the maximum width of the form */
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 40px; /* Add more padding around the content */
+  background-color: #ffffff; /* White background for the form */
+  border-radius: 12px; /* More pronounced rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* More prominent shadow for depth */
+}
+
+h2 {
+  text-align: center; /* Center the heading */
+  color: #333; /* Darker text for contrast */
+  margin-bottom: 30px; /* Increased space below the heading */
+  font-size: 28px; /* Increase heading font size */
+}
+
+.form-group {
+  margin-bottom: 30px; /* More space between form elements */
+}
+
+.form-control {
+  display: flex; /* Flexbox for easy alignment */
+}
+
+textarea {
+  flex: 1; /* Take up full width */
+  height: 200px; /* Increased height for better usability */
+  padding: 15px; /* More padding inside the textarea */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 6px; /* More pronounced rounded corners */
+  resize: none; /* Prevent resizing */
+  font-size: 18px; /* Increased font size for readability */
+  transition: border-color 0.3s; /* Transition for border color on focus */
+}
+
+textarea:focus {
+  border-color: #6a11cb; /* Change border color on focus */
+  outline: none; /* Remove outline */
+}
+
+button {
+  width: 100%; /* Full width for buttons */
+  padding: 15px; /* Increased padding for better clickability */
+  background-color: #6a11cb; /* Primary button color */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 30px; /* Increased border-radius for rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 18px; /* Increased font size */
+  transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+button:hover {
+  background-color: #2575fc; /* Darker shade on hover */
+}
+
+.back-button {
+  margin-top: 15px; /* Increased space above the back button */
+  background-color: #ccc; /* Light gray for back button */
+  padding: 15px; /* Add padding to back button */
+  font-size: 18px; /* Increase font size */
+}
+
+.back-button:hover {
+  background-color: #999; /* Darker gray on hover */
 }

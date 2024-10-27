@@ -51,7 +51,8 @@ const Journal = () => {
                     </div>
                 ))}
             </div>
-            <button onClick={() => navigate('/Tracker')}>New Journal Entry</button>
+            <button onClick={() => navigate('/Tracker')} className="new-entry-button">New Journal Entry</button>
+            <button onClick={() => navigate('/Home')} className="back-button">Back to Home</button> {/* Back button */}
         </div>
     );
 };

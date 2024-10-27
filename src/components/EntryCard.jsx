@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import trashcan from '../assets/trashcan.svg';
 
 const EntryCard = ({ timestamp, mood, id, onDelete }) => {
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -46,7 +47,7 @@ const EntryCard = ({ timestamp, mood, id, onDelete }) => {
         <div className={`EntryCard ${isDeleting ? "fade-out" : ""}`}>
             <h2><Link to={`/Entry/${id}`}>{mood}</Link></h2>
             <p>{formattedDate}</p>
-            <button onClick={handleDelete}>X</button>
+            <button className="delete-button" onClick={handleDelete}><img className="entry-img" src={trashcan} alt="" /></button>
         </div>
     );
 };
