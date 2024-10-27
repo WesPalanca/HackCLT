@@ -37,7 +37,7 @@ const Home = () => {
         console.log("User Response:", response.data); // Log the response
 
         if (response.data.success) {
-            setUserName(response.data.userName); // Adjust this based on your API response structure
+            setUserName(response.data.firstName); // Adjust this based on your API response structure
         } 
         else {
             console.error("User fetch failed:", response.data);

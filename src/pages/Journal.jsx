@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import EntryCard from "../components/EntryCard";
+import { useNavigate } from "react-router-dom";
 const Journal = () =>{
     const apiUrl = import.meta.env.VITE_API_URL;
     const [entries, setEntries] = useState([]);
+    const navigate = useNavigate();
 
     const fetchEntries = async () =>{
         try{
@@ -43,6 +45,7 @@ const Journal = () =>{
                     </div>
                 )}
            </div>
+           <button onClick={() => navigate('/Tracker')}>New Journal Entry</button>
         </div>
     )
 }

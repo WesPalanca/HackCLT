@@ -27,7 +27,7 @@
                     localStorage.setItem('token', token);
                     setUsername("");
                     setPassword("");
-                    navigate('/Home');
+                    navigate('/Feeling');
 
                 }else{
                     console.log(message);

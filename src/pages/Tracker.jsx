@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Tracker = () =>{
     const apiUrl = import.meta.env.VITE_API_URL;
+    const navigate = useNavigate();
     const [entry, setEntry] = useState("");
     const handleEntry = async (e) =>{
         e.preventDefault();
@@ -19,6 +21,7 @@ const Tracker = () =>{
             const { success, message } = response.data;
             if (success){
                 console.log(message);
+                navigate('/Journal')
             }
             else{
                 console.log("Failed to add journal entry");

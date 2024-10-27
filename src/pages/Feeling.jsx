@@ -1,4 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import AngryImage from "../assets/Angry.png";
+import AnxiousImage from "../assets/Anxious.png";
+import HappyImage from "../assets/Happy.png";
+import SadImage from "../assets/Sad.png";
+import TiredImage from "../assets/Tired.png";
 
 const Feeling = () => {
     const navigate = useNavigate();
@@ -12,11 +17,11 @@ const Feeling = () => {
         <div className="Feeling">
             <h1>How are you feeling today?</h1>
             <div>
-                <button type="button" onClick={() => receiveFeelings("Happy")}>Happy</button>
-                <button type="button" onClick={() => receiveFeelings("Sad")}>Sad</button>
-                <button type="button" onClick={() => receiveFeelings("Angry")}>Angry</button>
-                <button type="button" onClick={() => receiveFeelings("Tired")}>Tired</button>
-                <button type="button" onClick={() => receiveFeelings("Anxious")}>Anxious</button>
+                <button type="button" className="image-icon" onClick={() => receiveFeelings("Happy")}><img src={HappyImage} alt="Happy" /></button>
+                <button type="button" className="image-icon" onClick={() => receiveFeelings("Sad")}><img src={SadImage} alt="Sad" /></button>
+                <button type="button" className="image-icon" onClick={() => receiveFeelings("Angry")}><img src={AngryImage} alt="Angry" /></button>
+                <button type="button" className="image-icon" onClick={() => receiveFeelings("Tired")}><img src={TiredImage} alt="Tired" /></button>
+                <button type="button" className="image-icon" onClick={() => receiveFeelings("Anxious")}><img src={AnxiousImage} alt="Anxious" /></button>
             </div>
         </div>
     );
