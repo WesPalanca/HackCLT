@@ -7,6 +7,7 @@ const SingleEntry = () =>{
     const { id } = useParams();
     const [entry, setEntry] = useState();
     const [date, setDate] = useState();
+    
    
 
     const fetchEntry = async() =>{
@@ -44,7 +45,7 @@ const SingleEntry = () =>{
     return(
         <div className="SingleEntry">
             <h1>{date}</h1>
-            <p>{entry.entry}</p>
+            <p>{entry ? entry.entry : "Loading..."}</p>
         </div>
     )
 }
