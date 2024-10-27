@@ -14,7 +14,6 @@
         const navigate = useNavigate();
         const handleLogin = async (e = null) =>{
         if(e) e.preventDefault();
-            console.log(username + "\n" + password);
             try{
                 const response = await axios.post(`${apiUrl}/api/auth/login`,{
                     username: username,
@@ -41,7 +40,6 @@
         }
         const handleRegister = async (e) =>{
             e.preventDefault();
-            console.log(email + "\n" + firstName + "\n" + lastName + "\n" + username + "\n" + password);
             try{
                 const response = await axios.post(`${apiUrl}/api/auth/register`,{
                     email: email,
