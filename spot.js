@@ -12,6 +12,7 @@ const redirectUri = 'http://localhost:8888/callback';
 const scopes = 'user-top-read playlist-modify-public';
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // To parse JSON bodies
 
 // Login and Authorization Route
 app.get('/login', (req, res) => {
@@ -53,7 +54,7 @@ app.get('/callback', async (req, res) => {
         // Fetch top tracks 
         const topTracks = await fetchTopTracks(accessToken);
 
-        // mood selection form with dropdown
+        // Mood selection form with dropdown (this is replaced by buttons in the frontend)
         res.send(`
             <form action="/create-playlist" method="POST">
                 <label for="mood">Select your mood:</label>
@@ -75,7 +76,7 @@ app.get('/callback', async (req, res) => {
     }
 });
 
-//  Top Tracks
+// Fetch Top Tracks
 const fetchTopTracks = async (token) => {
     try {
         const apiUrl = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5';
@@ -110,7 +111,13 @@ app.post('/create-playlist', async (req, res) => {
         // Generate link
         const playlistLink = await createPlaylist(access_token, recommendedTracks);
 
-        res.send(`Playlist created! You can find it here: <a href="${playlistLink}" target="_blank">${playlistLink}</a>`);
+        // Save the playlist link to localStorage in the frontend
+        res.send(`
+            <script>
+                localStorage.setItem("playlistLink", "${playlistLink}");
+                window.location.href = '/home'; // Redirect to Home after saving the link
+            </script>
+        `);
     } catch (error) {
         console.error(`Create playlist error: ${error.message}`);
         res.status(500).send("Error creating playlist. Please try again.");
@@ -118,11 +125,20 @@ app.post('/create-playlist', async (req, res) => {
 });
 
 // Fetch Recommendations with Mood Mapping
-const getRecommendations = async (token, mood, baseTracks) => {
-    try {
-        const recommendationUrl = `https://api.spotify.com/v1/recommendations?seed_tracks=${baseTracks.join(',')}&target_valence=${moodValence(mood)}`;
+const getRecommendations = async (token, mood, topTracks) => {
+    const moodToSeedMap = {
+        happy: topTracks, // Using top tracks as seeds
+        sad: [], // Implement your logic here
+        angry: [], // Implement your logic here
+        tired: [], // Implement your logic here
+        anxious: [] // Implement your logic here
+    };
 
-        const response = await fetch(recommendationUrl, {
+    const seedTracks = moodToSeedMap[mood] || [];
+
+    try {
+        const apiUrl = `https://api.spotify.com/v1/recommendations?seed_tracks=${seedTracks.join(',')}&limit=20`;
+        const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -131,57 +147,47 @@ const getRecommendations = async (token, mood, baseTracks) => {
         });
 
         if (!response.ok) {
-            throw new Error(`Error fetching recommendations: ${response.status} ${response.statusText}`);
+            throw new Error(`Recommendations fetch error: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
         return data.tracks.map(track => track.id);
     } catch (error) {
-        console.error(`Recommendations fetch error: ${error.message}`);
+        console.error(`Recommendations error: ${error.message}`);
         throw error;
     }
 };
 
-// Map mood to Spotify valence
-const moodValence = (mood) => {
-    const moodMap = {
-        happy: 0.8,
-        sad: 0.2,
-        angry: 0.4,
-        tired: 0.3,
-        anxious: 0.5
-    };
-    return moodMap[mood.toLowerCase()] || 0.5;
-};
-
-// Create Playlist in Spotify
+// Create Playlist on Spotify
 const createPlaylist = async (token, trackIds) => {
     try {
-        const createPlaylistUrl = 'https://api.spotify.com/v1/me/playlists';
+        const userIdResponse = await fetch('https://api.spotify.com/v1/me', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
 
-        const createResponse = await fetch(createPlaylistUrl, {
+        const userIdData = await userIdResponse.json();
+        const userId = userIdData.id;
+
+        const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: 'Mood-Based Playlist',
-                description: 'A playlist based on your mood!',
+                name: `Mood Playlist - ${new Date().toLocaleDateString()}`,
+                description: `A playlist generated based on your mood.`,
                 public: true
             })
         });
 
-        if (!createResponse.ok) {
-            throw new Error(`Error creating playlist: ${createResponse.status} ${createResponse.statusText}`);
-        }
-
-        const playlistData = await createResponse.json();
+        const playlistData = await playlistResponse.json();
         const playlistId = playlistData.id;
 
-        // Add tracks
-        const addTracksUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
-        await fetch(addTracksUrl, {
+        await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -192,14 +198,13 @@ const createPlaylist = async (token, trackIds) => {
             })
         });
 
-        return playlistData.external_urls.spotify;
+        return playlistData.external_urls.spotify; // Return the Spotify playlist URL
     } catch (error) {
-        console.error(`Playlist creation error: ${error.message}`);
+        console.error(`Create playlist error: ${error.message}`);
         throw error;
     }
 };
 
-// Start server
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
