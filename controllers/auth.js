@@ -105,3 +105,21 @@ export const addEntry = async (req, res) =>{
         res.status(500).json({success: false, message: error});
     }
 };
+
+export const getUser = async (req, res) =>{
+    try{
+        const userId = req.user.userId;
+        const user = await Users.findById(userId);
+        if (!user){
+            console.log("Cant find user");
+            return res.status(404).json({success: false, message: "cant find user"});
+        }
+        const firstName = user.firstName;
+        return res.status(200).json({success: true, firstName, message: "Got first name of user"});
+
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({success: false, message: error});
+    }
+}
