@@ -8,6 +8,7 @@ import Journal from "./pages/Journal";
 import Feeling from "./pages/Feeling";
 import SingleEntry from "./pages/SingleEntry";
 import Resources from "./pages/Resources";
+import ChatBot from "./pages/ChatBot";
 
 
 
@@ -22,6 +23,7 @@ const App = () =>{
         <Route path='/Feeling' element={<Feeling />}></Route>
         <Route path="/Entry/:id" element={<SingleEntry/>}></Route>
         <Route path="/Resources" element={<Resources/>}></Route>
+        <Route path="/ChatBot" element={<ChatBot />}></Route>
       </Routes>
   </Router>
   )

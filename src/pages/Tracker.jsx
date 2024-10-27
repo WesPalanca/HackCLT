@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Tracker = () => {
     const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
     const [entry, setEntry] = useState("");
+    const [prompt, setPrompt] = useState();
 
     const handleEntry = async (e) => {
         e.preventDefault();
@@ -31,11 +32,16 @@ const Tracker = () => {
             console.log(error);
         }
     }
+    useEffect(() =>{
+        const mood = localStorage.getItem("mood");
+        setPrompt(`Why are you feeling ${mood}?`);
+    }, [])
 
     return (
         <div className="Tracker">
             <form onSubmit={handleEntry}>
                 <h2>Journal</h2>
+                <p>{prompt}</p>
                 <div className="form-group">
                     <div className="form-control">
                         <textarea

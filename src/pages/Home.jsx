@@ -83,7 +83,7 @@ const Home = () => {
             <div className="button-grid">
                 <button className="nav-button" onClick={() => navigate('/Journal')}>Journal</button>
                 <button className="nav-button" onClick={handleMusicButtonClick}>Music</button>
-                <button className="nav-button">Chat</button>
+                <button className="nav-button" onClick={() => navigate('/ChatBot')}>Chat</button>
                 <button className="nav-button" onClick={() => navigate('/Resources')}>Resources</button>
             </div>
             
