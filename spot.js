@@ -1,12 +1,13 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import querystring from 'querystring';
+import dotenv from 'dotenv';
 
 const app = express();
 const port = 8888;
-
-const clientId = 'clientID';
-const clientSecret = 'clientSecret';
+dotenv.config();
+const clientId = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
 const redirectUri = 'http://localhost:8888/callback';
 const scopes = 'user-top-read playlist-modify-public';
 

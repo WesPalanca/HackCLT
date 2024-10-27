@@ -266,3 +266,52 @@ form {
   display: flex;
   flex-direction: column;
 }
+.Feeling {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.Feeling h1 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.Feeling div {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.image-icon {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.image-icon img {
+  height: 60px;
+  width: 60px;
+}
+
+.image-icon:hover {
+  background-color: #d1d1d1;
+  transform: scale(1.1);
+}
+
+.image-icon:active {
+  background-color: #c0c0c0;
+  transform: scale(0.95);
+}
+.image-icon img[alt="Anxious"] {
+  transform: scale(2.6); /* Adjust scale as needed */
+}
+.image-icon img[alt="Tired"]{
+  transform: scale(1.2);
+}

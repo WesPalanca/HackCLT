@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Tracker from "./pages/Tracker";
 import Journal from "./pages/Journal";
 import Feeling from "./pages/Feeling";
+import SingleEntry from "./pages/SingleEntry";
 
 
 const App = () =>{
@@ -17,6 +18,7 @@ const App = () =>{
         <Route path="/Tracker" element={<Tracker />}></Route>
         <Route path='/Journal' element={<Journal />}></Route>
         <Route path='/Feeling' element={<Feeling />}></Route>
+        <Route path="/Entry/:id" element={<SingleEntry/>}></Route>
       </Routes>
   </Router>
   )
